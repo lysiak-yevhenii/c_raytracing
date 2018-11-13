@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:02:11 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/11 19:10:10 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/12 23:27:42 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@
 #define	SCREEN_W 1200
 #define	SCREEN_H 1200
 
-typedef struct		s_win
-{
-	
-}					t_win;
-
 typedef struct
 {
 	float			x;
@@ -35,4 +30,30 @@ typedef struct
 	float			z;
 }					vector;
 
+typedef struct		s_object
+{
+	char			*name;
+	vector			pos;  //for all objects (where they located?)
+	vector			dir; //for camera and plane
+	int				reflaction;
+	unsigned int	color;
+}					t_objects;
+
+typedef struct		s_win
+{
+	SDL_Window		*window;
+	SDL_Surface		*main_surface;
+	t_objects		*objects;
+}					t_win;
+
+int				ft_parsing(t_win *window, char *input);
+int				ft_count_objects(char *input);
+int				ft_create_objects(t_win *window, int mount);
+void			ft_core(t_win *window);
+
+//SDL initialize connection with CPU and allocate window
+//initialize main_surface 
+int					ft_init_sdl(t_win *window);
+//SDL fill pixels of surface;
+void				ft_draw_bpx(int x, int y, size_t color, SDL_Surface *img);
 #endif

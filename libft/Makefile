@@ -6,7 +6,7 @@
 #    By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/28 11:29:52 by ylisyak           #+#    #+#              #
-#    Updated: 2018/10/09 00:46:43 by ylisyak          ###   ########.fr        #
+#    Updated: 2018/11/13 01:20:55 by ylisyak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = ft_memset.c \
 	   ft_memchr.c \
 	   ft_memcmp.c \
 	   ft_strlen.c \
+	   ft_strlen_until.c \
 	   ft_strdup.c \
 	   ft_strcpy.c \
 	   ft_strncpy.c \
@@ -95,6 +96,7 @@ OBJ = ft_memset.o \
 	   ft_memchr.o \
 	   ft_memcmp.o \
 	   ft_strlen.o \
+	   ft_strlen_until.o \
 	   ft_strdup.o \
 	   ft_strcpy.o \
 	   ft_strncpy.o \

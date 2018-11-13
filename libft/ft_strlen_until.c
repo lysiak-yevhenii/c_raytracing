@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_until.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/03 20:10:53 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/13 03:41:27 by ylisyak          ###   ########.fr       */
+/*   Created: 2018/11/13 01:03:11 by ylisyak           #+#    #+#             */
+/*   Updated: 2018/11/13 01:18:24 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/rtv.h"
+#include "libft.h"
 
-int			main(int ac, char **av)
+int				ft_strlen_until(char *s, int until)
 {
-	int i;
-	int		objects_mount;
-	t_win	window;
+	int		i;
 
 	i = 0;
-	ft_bzero(&window, sizeof(t_win));
-	if (ac == 2)
-		if ((objects_mount = ft_count_objects(av[1])))
-			if (ft_create_objects(&window, objects_mount))
-				if (ft_parsing(&window, av[1]))
-					if (ft_init_sdl(&window)) 
-						ft_core(&window);
-	while (i < 4)
+	while (*s != '\0' && *s != until)
 	{
-		printf("%d\n", window.objects[i].color);
-	   i++;	
+		i++;
+		s++;
 	}
-	return (0);
+	return (i);
 }

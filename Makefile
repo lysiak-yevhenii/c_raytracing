@@ -6,7 +6,7 @@
 #    By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/03 19:58:25 by ylisyak           #+#    #+#              #
-#    Updated: 2018/11/05 15:48:51 by ylisyak          ###   ########.fr        #
+#    Updated: 2018/11/12 22:18:15 by ylisyak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,11 @@ SDL_TTFP	=	./sdl/sdl2_ttf/2.0.14/lib/
 SDL_TTF_INC	=	-I ./sdl/sdl2_ttf/2.0.14/include/SDL2/
 SDL_TTF_LNK	=	-L ./sdl/sdl2_ttf/2.0.14/lib/ -l SDL2_ttf
 
-SRC		=	main.c
+SRC		=	main.c \
+			ft_drawing_bpx.c \
+			ft_parser.c \
+			ft_core.c \
+			ft_init_sdl.c \
 
 OBJ_PS	=	$(addprefix $(OBJ_P), $(SRC:.c=.o))
 

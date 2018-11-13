@@ -1,0 +1,11 @@
+//Back ground color set
+
+background
+			color: <whie>
+Object1
+			color: <green>
+background
+			color: <black>
+Object1
+			color: <blue>
+			
