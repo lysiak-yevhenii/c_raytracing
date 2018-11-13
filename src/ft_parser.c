@@ -6,11 +6,45 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/13 03:49:35 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/13 05:04:22 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rtv.h"
+
+void	ft_hex_rgb(t_win *window, char *line, int id)
+{
+	
+}
+
+void	ft_dec_rgb(t_win *window, char *line, int id)
+{
+	int		nbr;
+	int		point;
+	int		tmpwl;
+	int		tmpdl;
+
+	nbr = 0;
+	point = 0;
+	tmpwl = 0;
+	tmpdl = 0;
+	while (*line != '\0' && *line != '>')
+	{
+		while (*line == ' ')
+			line++;
+		if (ft_isdigit(*line))
+		{
+			tmpwl = (point == 2) ? ft_strlen_until(line, '>') :\
+			ft_strlen_until(line, ',');
+			nbr = ft_atoi_base(line, 10);
+			tmpdl = ft_nbrlen(nbr);
+			(nbr > 255 || nbr < 0) ? printf("Not valid RGB parameter in cell\n") : 0;
+			(tmpwl == tmpdl) ? printf("yes") : printf("no");
+		}
+		line += tmpwl + 1;
+		point++;
+	}	   
+}
 
 void	ft_default_color(t_win *window, char *line, int id)
 {
@@ -29,6 +63,8 @@ void	ft_default_color(t_win *window, char *line, int id)
 		printf("\33[0;31m");
 		printf("Object name: %s\n", window->objects[id].name);
 		printf("Not correct default color in object [id:%d]\n", id);
+		printf("Color set as black as default.\n");
+		window->objects[id].color = 0;
 		printf("\33[0m");
 	}
 }
@@ -41,9 +77,9 @@ void	ft_get_color(t_win *window, char *line, int id)
 	if (ft_isalpha(*line))
 		ft_default_color(window, line, id);
 	if (*line == '0' && (*(line + 1) == 'x' || *(line + 1) == 'X'))
-		printf("it's hex");
+		ft_hex_rgb(window, line, id);
 	else if (ft_isdigit(*line) && (*(line + 1) != 'x' || *(line + 1) != 'X'))
-		printf("is rgb");
+		ft_dec_rgb(window, line, id);	
 }
 
 void	ft_parameter(t_win *window, char *line, int *id)

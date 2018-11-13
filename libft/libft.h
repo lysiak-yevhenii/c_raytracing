@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 11:28:20 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/13 01:18:44 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/13 04:15:08 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_nbrlen(int tmpd);
 int					ft_strlen_from(char *s, int from);
 int					ft_strlen_until(char *s, int until);
 int					ft_strcmp(const char *s1, const char *s2);

@@ -1,7 +1,7 @@
 //Back ground color set
 
 background
-			color: <whie>
+			color: <256, 255, 255>
 Object1
 			color: <green>
 background
