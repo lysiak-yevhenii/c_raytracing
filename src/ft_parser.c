@@ -6,31 +6,26 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/14 23:40:22 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/15 01:19:05 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rtv.h"
 
-unsigned int				ft_rgb(int r, int g, int b)
+unsigned int		ft_rgb(int r, int g, int b)
 {
-	unsigned int			color;
+	unsigned int	color;
 
 	color = b + (g << 8) + (r << 16);
 	printf("%d", color);
 	return (color);
 }
 
-void			ft_hex_rgb(t_win *window, char *line, int id)
+void				ft_rgb_catcher(t_win *window, int id, int nbr)
 {
-	
-}
-
-void			ft_rgb_catcher(t_win *window, int id, int nbr)
-{
-	static int	id_value = -2;
-	static int  counter;
-	static int	color;
+	static int		id_value = -2;
+	static int  	counter;
+	static int		color;
 
 	(id_value == -2) ? id_value = -1 : 0;
 	if (id != id_value)
@@ -47,12 +42,47 @@ void			ft_rgb_catcher(t_win *window, int id, int nbr)
 	id_value = id;
 }
 
-void	ft_dec_rgb(t_win *window, char *line, int id)
+int				ft_isalphahex(char c)
 {
-	int		nbr;
-	int		point;
-	int		tmpwl;
-	int		tmpdl;
+	if ((c >= 65 && c <= 70) || (c >= 97 && c <= 102)) 
+		return (1);
+	return (0);
+}
+
+void				ft_hex_rgb(t_win *window, char *line, int id)
+{
+	int				nbr;
+	int				point;
+	int				tmpwl;
+	int				wlmax;
+
+	nbr = 0;
+	point = 0;
+	tmpwl = 0;
+	wlmax = 6;
+	while (*line != '\0' && *line != '>')
+	{
+		while (*line == ' ')
+			line++;
+		if (ft_isdigit(*line))
+		{
+			line += 2;
+			tmpwl = ft_strlen_until(line, '>');
+			(tmpwl > wlmax) ? printf("Max 6 simbols in hex") : 0; 
+			nbr = ft_atoi_base(line, 16);
+			window->objects[id].color = nbr;
+		}
+		line += tmpwl + 1;
+		point++;
+	}
+}
+
+void				ft_dec_rgb(t_win *window, char *line, int id)
+{
+	int				nbr;
+	int				point;
+	int				tmpwl;
+	int				tmpdl;
 
 	nbr = 0;
 	point = 0;
