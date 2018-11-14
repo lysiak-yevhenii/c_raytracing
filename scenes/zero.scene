@@ -1,11 +1,13 @@
 //Back ground color set
 
 background
-			color: <256, 255, 255>
+			color: <255, 255, 255>
 Object1
-			color: <green>
+			color: <255, 255, 255>
 background
 			color: <black>
+Object2
+			color: <100, 100, 100>
 Object1
 			color: <blue>
 			

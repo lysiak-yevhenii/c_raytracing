@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 20:10:53 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/13 03:41:27 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/14 23:41:13 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			main(int ac, char **av)
 				if (ft_parsing(&window, av[1]))
 					if (ft_init_sdl(&window)) 
 						ft_core(&window);
-	while (i < 4)
+	while (i < 5)
 	{
 		printf("%d\n", window.objects[i].color);
 	   i++;	

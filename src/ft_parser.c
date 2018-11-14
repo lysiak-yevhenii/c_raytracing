@@ -6,15 +6,45 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/13 05:04:22 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/14 23:40:22 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rtv.h"
 
-void	ft_hex_rgb(t_win *window, char *line, int id)
+unsigned int				ft_rgb(int r, int g, int b)
+{
+	unsigned int			color;
+
+	color = b + (g << 8) + (r << 16);
+	printf("%d", color);
+	return (color);
+}
+
+void			ft_hex_rgb(t_win *window, char *line, int id)
 {
 	
+}
+
+void			ft_rgb_catcher(t_win *window, int id, int nbr)
+{
+	static int	id_value = -2;
+	static int  counter;
+	static int	color;
+
+	(id_value == -2) ? id_value = -1 : 0;
+	if (id != id_value)
+	{
+		color = 0;
+		counter = 0;
+	}
+	(counter == 0) ? color += ft_rgb(nbr, 0, 0) : 0;
+	(counter == 1) ? color += ft_rgb(0, nbr, 0) : 0;
+	(counter == 2) ? color += ft_rgb(0, 0, nbr) : 0;
+	(counter == 2) ? window->objects[id].color = color : 0;
+	(counter == 2) ? printf("Color in object : %d\n", window->objects[id].color):0;
+	counter++;
+	id_value = id;
 }
 
 void	ft_dec_rgb(t_win *window, char *line, int id)
@@ -40,6 +70,7 @@ void	ft_dec_rgb(t_win *window, char *line, int id)
 			tmpdl = ft_nbrlen(nbr);
 			(nbr > 255 || nbr < 0) ? printf("Not valid RGB parameter in cell\n") : 0;
 			(tmpwl == tmpdl) ? printf("yes") : printf("no");
+			ft_rgb_catcher(window, id, nbr);
 		}
 		line += tmpwl + 1;
 		point++;
