@@ -6,18 +6,79 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/15 02:07:12 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/15 02:47:51 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rtv.h"
+
+void				ft_direction_catcher(t_win *window, int id, int nbr)
+{
+	static int		id_value = -2;
+	static int  	counter;
+	static int		color;
+
+	(id_value == -2) ? id_value = -1 : 0;
+	if (id != id_value)
+	{
+		color = 0;
+		counter = 0;
+	}
+	(counter == 0) ? (window->objects[id].dir.x = nbr) : 0;
+	(counter == 1) ? (window->objects[id].dir.y = nbr) : 0;
+	(counter == 2) ? (window->objects[id].dir.z = nbr) : 0;
+	(counter == 0) ? printf("X : %f\n", window->objects[id].dir.x) : 0;
+	(counter == 1) ? printf("Y : %f\n", window->objects[id].dir.y) : 0;
+	(counter == 2) ? printf("Z : %f\n", window->objects[id].dir.z) : 0;
+	counter++;
+	id_value = id;
+}
+
+void	ft_direction(t_win *window, char *line, int id)
+{
+	int				nbr;
+	int				point;
+	int				tmpwl;
+	int				tmpdl;
+
+	nbr = 0;
+	point = 0;
+	tmpwl = 0;
+	tmpdl = 0;
+	while (*line != '\0' && *line != '>')
+	{
+		while (*line == ' ')
+			line++;
+		if (ft_isdigit(*line))
+		{
+			tmpwl = (point == 2) ? ft_strlen_until(line, '>') :\
+			ft_strlen_until(line, ',');
+			nbr = ft_atoi_base(line, 10);
+			tmpdl = ft_nbrlen(nbr);
+			((nbr <= SCREEN_W && nbr >= 100) || (nbr >= 100 && nbr <= SCREEN_H)) ?\
+			printf("Not valid RGB parameter in cell\n") : 0;
+			(tmpwl == tmpdl) ? printf("yes") : printf("no");
+			ft_direction_catcher(window, id, nbr);
+		}
+		line += tmpwl + 1;
+		point++;
+	}	   
+}
+
+void	ft_get_direction(t_win *window, char *line, int id)
+{
+	while (*line != '<' && *line != '\0')
+		line++;
+	line++;
+	if (ft_isdigit(*line))
+		ft_direction(window, line, id);	
+}
 
 unsigned int		ft_rgb(int r, int g, int b)
 {
 	unsigned int	color;
 
 	color = b + (g << 8) + (r << 16);
-	printf("%d", color);
 	return (color);
 }
 
@@ -205,16 +266,42 @@ void	ft_get_location(t_win *window, char *line, int id)
 		ft_location(window, line, id);	
 }
 
+void	ft_angle(t_win *window, char *line, int id)
+{
+	double			angle;
+
+	while (*line != '\0' && *line != '>')
+		line++;
+	if (ft_isdigit(*line))
+	{
+		
+	}
+	
+}
+
+void	ft_get_angle(t_win *window, char *line, int id)
+{
+	while (*line != '<' && *line != '\0')
+		line++;
+	line++;
+	if (ft_isdigit(*line))
+		ft_angle(window, line, id);
+}
+
 void	ft_parameter(t_win *window, char *line, int *id)
 {
 	while (*line == 9)
 		line++;
 	if (ft_isalpha(*line))
 	{
-		if (ft_strncmp(line, "location", ft_strlen_until(line, ':')) == 0)
-			ft_get_location(window, line, *id);
 		if (ft_strncmp(line, "color", ft_strlen_until(line, ':')) == 0)
 			ft_get_color(window, line, *id);	
+		if (ft_strncmp(line, "location", ft_strlen_until(line, ':')) == 0)
+			ft_get_location(window, line, *id);
+		if (ft_strncmp(line, "direction", ft_strlen_until(line, ':')) == 0)
+			ft_get_direction(window, line, *id);
+		if (ft_strncmp(line, "angle", ft_strlen_until(line, ':')) == 0)
+			ft_get_angle(window, line, *id);
 	}	
 }
 
@@ -256,6 +343,9 @@ int		ft_parsing(t_win *window, char *input)
 
 int		ft_create_objects(t_win *window, int mount)
 {
+	//HERE NEED TO BE BZERED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	window->objects = (t_objects *)malloc(sizeof(t_objects) * mount);
 	if (window->objects != NULL)
 		return (1);
