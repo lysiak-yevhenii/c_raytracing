@@ -7,10 +7,11 @@
 //Color can be setted up as hex; Be attantive any abnormal 
 //form of representation hex will be skipped.
 //Available comments by using at the beginning of the row
-/double slash //
+//double slash //
 
 background
 			color: <255, 255, 255>
+			location: <10, 12, 10>			
 Object1
 			color: <255, 255, 255>
 background
