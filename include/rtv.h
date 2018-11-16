@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:02:11 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/12 23:27:42 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/16 02:27:43 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct		s_object
 	char			*name;
 	vector			pos;  //for all objects (where they located?)
 	vector			dir; //for camera and plane
+	double			radius;
 	int				reflaction;
+	int				angle; // in degree
 	unsigned int	color;
 }					t_objects;
 

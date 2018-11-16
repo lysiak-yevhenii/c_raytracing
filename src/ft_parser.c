@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/15 02:47:51 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/11/16 02:27:35 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,26 +266,54 @@ void	ft_get_location(t_win *window, char *line, int id)
 		ft_location(window, line, id);	
 }
 
+
+
 void	ft_angle(t_win *window, char *line, int id)
 {
 	double			angle;
 
-	while (*line != '\0' && *line != '>')
+	while (*line != '\0' && *line != '\n' && *line != ' ')
+	{	
+		if (ft_isdigit(*line) || *line == '-')
+		{
+			window->objects[id].angle = ft_atoi(line);
+			line += ft_nbrlen(ft_atoi(line)) - 1;	
+		}
 		line++;
-	if (ft_isdigit(*line))
-	{
-		
 	}
-	
 }
 
 void	ft_get_angle(t_win *window, char *line, int id)
 {
-	while (*line != '<' && *line != '\0')
+	while (*line != '-' && !ft_isdigit(*line) && *line != '\0')
 		line++;
-	line++;
-	if (ft_isdigit(*line))
+	while (*line == ' ')
+		line++;
+	if (ft_isdigit(*line) || *line == '-')
 		ft_angle(window, line, id);
+}
+
+void	ft_radius(t_win *window, char *line, int id)
+{
+	while (*line != '\0' && *line != '\n' && *line != ' ')
+	{
+		if (ft_isdigit(*line))
+		{
+			window->objects[id].radius = ft_atoi(line);
+			line += ft_strlen_until(line, ' ') - 1;
+		}
+		line++;
+	}
+}
+
+void	ft_get_radius(t_win *window, char *line, int id)
+{
+	while (!ft_isdigit(*line) && *line != '\0')
+		line++;
+	while (*line == ' ')
+		line++;
+	if (ft_isdigit(*line))
+		ft_radius(window, line, id);
 }
 
 void	ft_parameter(t_win *window, char *line, int *id)
@@ -302,6 +330,8 @@ void	ft_parameter(t_win *window, char *line, int *id)
 			ft_get_direction(window, line, *id);
 		if (ft_strncmp(line, "angle", ft_strlen_until(line, ':')) == 0)
 			ft_get_angle(window, line, *id);
+		if (ft_strncmp(line, "radius", ft_strlen_until(line, ':')) == 0)
+			ft_get_radius(window, line, *id);
 	}	
 }
 

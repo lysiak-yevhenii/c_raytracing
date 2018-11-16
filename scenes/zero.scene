@@ -13,7 +13,8 @@ background
 			color: <255, 255, 255>
 			location: <10, 12, 10>
 			direction: <0, 10, 5>
-			angle: 	0.2
+			angle: -10
+			radius: 2.5	
 Object1
 			color: <255, 255, 255>
 			location: <1, 2, 3>
