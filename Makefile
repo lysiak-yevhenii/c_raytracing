@@ -6,7 +6,7 @@
 #    By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/03 19:58:25 by ylisyak           #+#    #+#              #
-#    Updated: 2018/11/12 22:18:15 by ylisyak          ###   ########.fr        #
+#    Updated: 2018/12/11 00:24:06 by ylisyak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC		=	main.c \
 			ft_parser.c \
 			ft_core.c \
 			ft_init_sdl.c \
+			ft_error.c \
 
 OBJ_PS	=	$(addprefix $(OBJ_P), $(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: ylisyak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 18:10:55 by ylisyak           #+#    #+#             */
-/*   Updated: 2018/11/16 02:27:35 by ylisyak          ###   ########.fr       */
+/*   Updated: 2018/12/11 01:13:16 by ylisyak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,6 @@ void	ft_get_direction(t_win *window, char *line, int id)
 	line++;
 	if (ft_isdigit(*line))
 		ft_direction(window, line, id);	
-}
-
-unsigned int		ft_rgb(int r, int g, int b)
-{
-	unsigned int	color;
-
-	color = b + (g << 8) + (r << 16);
-	return (color);
 }
 
 void				ft_rgb_catcher(t_win *window, int id, int nbr)
